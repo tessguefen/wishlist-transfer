@@ -1,0 +1,31 @@
+each customer has 1 wishlist each wishlist can have multiple products each product can have multiple attributes
+
+
+cust 1 -> wishlist -> products 1       2, and        3
+                               ^       |             ^
+                          attr1 attr2 attr1  attr1 attr2 attr3
+
+
+
+s01_WishLists:
+    id = self.id
+    cust_id = s01_SS_REGISTRY_registries.cust_id
+    title = "My wish list"
+    notes = "" 
+    shared = 0
+
+s01_WishListItems:
+    id = self.id
+    wshlst_id = s01_WishLists.id
+    product_id = s01_SS_REGISTRY_regprod.id
+    dtadded = unix_timestamp(now())
+    quantity s01_SS_REGISTRY_regprod.quantity
+    notes = s01_SS_REGISTRY_regprod.note
+
+s01_WishListOptions:
+    wish_id = s01_WishListItems.id
+    attr_id = s01_SS_REGISTRY_regopts.attr_id
+    option_id = s01_SS_REGISTRY_regopts.option_id
+    data = s01_SS_REGISTRY_regopts.data
+    data_long = s01_SS_REGISTRY_regopts.data_long
+
